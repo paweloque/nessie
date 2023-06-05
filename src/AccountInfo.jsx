@@ -37,7 +37,7 @@ const AccountInfo = () => {
 
     return (
         <div className="p-8 mb-8">
-            <h2 className="text-2xl font-bold mb-4">Account Information</h2>
+            <h2 className="text-2xl font-bold mb-4">Kontoauszug</h2>
             <form
                 onSubmit={handleSubmit}
                 className="flex items-center mb-4"

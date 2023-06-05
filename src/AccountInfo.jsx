@@ -38,13 +38,12 @@ const AccountInfo = () => {
 
     console.log(accountData);
 
-    belege && belege.map((beleg, index) => (
-        console.log(beleg)
-    ));
+    // belege && belege.map((beleg, index) => (
+    //     console.log(beleg)
+    // ));
 
     return (
         <div>
-            <h2>Account Information</h2>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="inkassoKey">Inkasso Key:</label>
                 <input
@@ -56,13 +55,13 @@ const AccountInfo = () => {
                 <button type="submit">Load Data</button>
             </form>
 
-            {belege && belege.length > 0 ? (
+            {belege ? (
                 <>
                     <div>
-                        <h3>Inkasso Key: {inkassoKey}</h3>
+                        {/*<h3>Inkasso Key: {inkassoKey}</h3>*/}
                         {belege.map((beleg, index) => (
                             <>
-                                <Beleg key={index} beleg={beleg[index]}/>
+                                <Beleg key={index} beleg={beleg}/>
                             </>
                         ))}
                     </div>

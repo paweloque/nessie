@@ -2,34 +2,20 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
 const AccountInfo = () => {
-    const [inkassoKey, setInkassoKey] = useState('');
-    const [belege, setBelege] = useState([]);
-
-    const [accountData, setAccountData] = useState(null);
+    const [inkassoKey, setInkassoKey] = useState('17255159/10/2021/1');
+    const [accountData, setAccountData] = useState([]);
 
     const fetchData = async () => {
         try {
             const response = await axios.get(
                 `http://localhost:8200/api/kontoauszug?inkassoKey=${inkassoKey}`
             );
-            setBelege(response.data);
+            // console.log(response.data);
+            setAccountData(response.data);
         } catch (error) {
             console.error(error);
         }
     };
-
-    //useEffect(() => {
-    // Fetch data from the API
-    // 17255159/10/2021/1
-    //  fetch('http://localhost:8200/api/kontoauszug?inkassoKey=${inkassoKey}')
-    //    .then(response => response.json())
-    //    .then(data => setAccountData(data))
-    //    .catch(error => console.log(error));
-    //}, []);
-
-    if (!accountData) {
-        return <div>Loading...</div>;
-    }
 
     const handleInputChange = (e) => {
         setInkassoKey(e.target.value);
@@ -39,6 +25,22 @@ const AccountInfo = () => {
         e.preventDefault();
         fetchData();
     };
+
+    const { returnedInkassoKey, belege } = accountData;
+
+    console.log(belege);
+
+    // if (belege.length > 0) {
+    //     console.log(belege[0]);
+    // }
+    // console.log(belege);
+    // debugger;
+
+    console.log(accountData);
+
+    belege && belege.map((beleg, index) => (
+        console.log(beleg)
+    ));
 
     return (
         <div>
@@ -54,13 +56,17 @@ const AccountInfo = () => {
                 <button type="submit">Load Data</button>
             </form>
 
-            {belege.length > 0 ? (
-                <div>
-                    <h3>Inkasso Key: {inkassoKey}</h3>
-                    {belege.map((beleg, index) => (
-                        <Beleg key={index} beleg={beleg}/>
-                    ))}
-                </div>
+            {belege && belege.length > 0 ? (
+                <>
+                    <div>
+                        <h3>Inkasso Key: {inkassoKey}</h3>
+                        {belege.map((beleg, index) => (
+                            <>
+                                <Beleg key={index} beleg={beleg[index]}/>
+                            </>
+                        ))}
+                    </div>
+                </>
             ) : (
                 <p>No data to display</p>
             )}

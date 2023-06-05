@@ -13,24 +13,24 @@ const EntryPage = () => {
                 <h1>Entry Page</h1>
                 <ul>
                     <li>
-                        <Link to="/account-info/17255159/10/2021/1">Inkasso Key: 17255159/10/2021/1</Link>
+                        <Link to="/account-info?inkassoKey=17255159/10/2021/1">Inkasso Key: 17255159/10/2021/1</Link>
                     </li>
                     {/* Add more inkasso keys as needed */}
                 </ul>
             </div>
-            <p>Select an Inkassonummer to view its details:</p>
-            <ul className="list-disc pl-6 mt-4">
-                {inkassonummerList.map((inkassonummer, index) => (
-                    <li key={index} className="mb-2">
-                        <Link
-                            to={`/inkassomassnahme?inkassoKey=${inkassonummer}`}
-                            className="text-blue-500 hover:underline"
-                        >
-                            {inkassonummer}
-                        </Link>
-                    </li>
-                ))}
-            </ul>
+            {/*<p>Select an Inkassonummer to view its details:</p>*/}
+            {/*<ul className="list-disc pl-6 mt-4">*/}
+            {/*    {inkassonummerList.map((inkassonummer, index) => (*/}
+            {/*        <li key={index} className="mb-2">*/}
+            {/*            <Link*/}
+            {/*                to={`/inkassomassnahme?inkassoKey=${inkassonummer}`}*/}
+            {/*                className="text-blue-500 hover:underline"*/}
+            {/*            >*/}
+            {/*                {inkassonummer}*/}
+            {/*            </Link>*/}
+            {/*        </li>*/}
+            {/*    ))}*/}
+            {/*</ul>*/}
         </div>
     );
 };

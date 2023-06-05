@@ -1,17 +1,26 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
-const AccountInfo = () => {
+const AccountInfo = ({inkassoKeyIn, belegeIn}) => {
     const [inkassoKey, setInkassoKey] = useState('17255159/10/2021/1');
-    const [accountData, setAccountData] = useState([]);
+    const [belege, setBelege] = useState([]);
+    // const [accountData, setAccountData] = useState([]);
+    // const [accountData, setAccountData] = useState([]);
+
+    // debugger
+    // if (belegeIn && inkassoKeyIn) {
+    //     setInkassoKey(inkassoKeyIn)
+    //     setBelege(belegeIn);
+    // }
 
     const fetchData = async () => {
         try {
             const response = await axios.get(
                 `http://localhost:8200/api/kontoauszug?inkassoKey=${inkassoKey}`
             );
-            // console.log(response.data);
-            setAccountData(response.data);
+            console.log(response.data);
+            // setAccountData(response.data);
+            setBelege(response.data.belege)
         } catch (error) {
             console.error(error);
         }
@@ -33,7 +42,7 @@ const AccountInfo = () => {
         }
     };
 
-    const { returnedInkassoKey, belege } = accountData;
+    // const {returnedInkassoKey, belege} = accountData;
 
     return (
         <div className="p-8 mb-8">
@@ -62,7 +71,7 @@ const AccountInfo = () => {
             </form>
 
             <div className="border rounded-lg p-4 mb-4">
-                { belege && <h2 className="text-2xl font-bold mb-2">Inkasso Key: {inkassoKey}</h2>}
+                {belege && <h2 className="text-2xl font-bold mb-2">Inkasso Key: {inkassoKey}</h2>}
                 <div className="ml-4">
                     {belege ? (
                         <>

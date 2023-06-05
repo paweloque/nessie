@@ -1,25 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
+import AccountInfo from './AccountInfo';
 
-function App() {
+const data = {
+  inkassoKey: "17'255'159/10/2021/1",
+  belege: [
+    {
+      valuta: '2021-05-20',
+      created: '2021-04-24',
+      konto: 'ERTRAG',
+      positionen: [
+        {
+          betrag: "1'257.10",
+          katId: 'EINKOMMENSSTEUER',
+          institution: { art: 'GEMEINDE', nummer: 23270 }
+        },
+        // More positions...
+      ],
+      belegart: 'RATENRECHNUNG/1'
+    },
+    // More belege...
+  ]
+};
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+    <div>
+      <h1 className='text-3xl'>Konto-Auszug</h1>
+      <AccountInfo inkassoKey={data.inkassoKey} belege={data.belege} />
     </div>
+    </>
   );
-}
+};
 
 export default App;

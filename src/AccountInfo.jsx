@@ -26,49 +26,60 @@ const AccountInfo = () => {
         fetchData();
     };
 
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            fetchData();
+        }
+    };
+
     const { returnedInkassoKey, belege } = accountData;
 
-    console.log(belege);
-
-    // if (belege.length > 0) {
-    //     console.log(belege[0]);
-    // }
-    // console.log(belege);
-    // debugger;
-
-    console.log(accountData);
-
-    // belege && belege.map((beleg, index) => (
-    //     console.log(beleg)
-    // ));
-
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="inkassoKey">Inkasso Key:</label>
+        <div className="p-8 mb-8">
+            <h2 className="text-2xl font-bold mb-4">Account Information</h2>
+            <form
+                onSubmit={handleSubmit}
+                className="flex items-center mb-4"
+            >
+                <label htmlFor="inkassoKey" className="mr-2">
+                    Inkasso Key:
+                </label>
                 <input
                     type="text"
                     id="inkassoKey"
                     value={inkassoKey}
                     onChange={handleInputChange}
+                    onKeyPress={handleKeyPress}
+                    className="py-1 px-2 border border-gray-300 rounded mr-2"
                 />
-                <button type="submit">Load Data</button>
+                <button
+                    type="submit"
+                    className="py-1 px-4 bg-green-500 text-white rounded cursor-pointer"
+                >
+                    Load Data
+                </button>
             </form>
 
-            {belege ? (
-                <>
-                    <div>
-                        {/*<h3>Inkasso Key: {inkassoKey}</h3>*/}
-                        {belege.map((beleg, index) => (
-                            <>
-                                <Beleg key={index} beleg={beleg}/>
-                            </>
-                        ))}
-                    </div>
-                </>
-            ) : (
-                <p>No data to display</p>
-            )}
+            <div className="border rounded-lg p-4 mb-4">
+                { belege && <h2 className="text-2xl font-bold mb-2">Inkasso Key: {inkassoKey}</h2>}
+                <div className="ml-4">
+                    {belege ? (
+                        <>
+                            <div>
+                                {belege.map((beleg, index) => (
+                                    <>
+                                        <Beleg key={index} beleg={beleg}/>
+                                    </>
+                                ))}
+                            </div>
+                        </>
+                    ) : (
+                        <></>
+                        // <p>Noch nichts zum Zeigen da..</p>
+                    )}
+                </div>
+            </div>
         </div>
     );
 };

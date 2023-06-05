@@ -26,7 +26,7 @@ const App = () => {
   return (
     <>
     <div>
-      <h1 className='text-3xl'>Konto-Auszug</h1>
+      {/*<h1 className='text-3xl'>Konto-Auszug</h1>*/}
       <AccountInfo inkassoKey={data.inkassoKey} belege={data.belege} />
     </div>
     </>
